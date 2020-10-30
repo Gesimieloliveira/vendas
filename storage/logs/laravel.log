@@ -723,3 +723,23 @@ Stack trace:
 [stacktrace]
 #0 {main}
 "} 
+[2020-10-29 23:10:48] local.ERROR: Uncaught Error: Class 'Arr' not found in Command line code:1
+Stack trace:
+#0 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Uncaught Error: Class 'Arr' not found in Command line code:1
+Stack trace:
+#0 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 {main}
+"} 
+[2020-10-29 23:11:48] local.ERROR: Uncaught Error: Class 'Arr' not found in Command line code:1
+Stack trace:
+#0 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Uncaught Error: Class 'Arr' not found in Command line code:1
+Stack trace:
+#0 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 {main}
+"} 
