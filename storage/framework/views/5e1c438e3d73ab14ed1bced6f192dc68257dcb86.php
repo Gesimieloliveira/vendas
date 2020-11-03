@@ -696,7 +696,7 @@
             
             'lengthMenu': '_MENU_ <?php echo e(trans("file.records per page")); ?>',
              "info":      '<small><?php echo e(trans("file.Showing")); ?> _START_ - _END_ (_TOTAL_)</small>',
-            "search":  '<?php echo e(trans("file.Search")); ?>',
+            "search":  '<?php echo e(trans("file.Searchclient")); ?>',
             'paginate': {
                     'previous': '<i class="dripicons-chevron-left"></i>',
                     'next': '<i class="dripicons-chevron-right"></i>'

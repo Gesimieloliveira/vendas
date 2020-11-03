@@ -236,6 +236,7 @@ return [
 	"CSV" => "CSV",
 	"Column visibility" => "Visibilidade da coluna",
 	"Search" => "Procurar",
+	"Searchclient" => "Procurar pelo Cliente",
 	"records per page" => "registros por página",
 	"Showing" => "Mostrando",
 	"Next" => "Próximo",

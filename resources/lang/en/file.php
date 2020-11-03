@@ -236,6 +236,7 @@ return [
 	'CSV' => 'CSV',
 	'Column visibility' => 'Column visibility',
 	'Search' => 'Search',
+	'Searchclient' =>'Search client',
 	'records per page' => 'records per page',
 	'Showing' => 'Showing',
 	'Next' => 'Next',
