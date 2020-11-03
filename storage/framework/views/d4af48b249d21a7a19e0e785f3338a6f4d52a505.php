@@ -54,59 +54,76 @@
         <div class="form-outer text-center d-flex align-items-center">
           <div class="form-inner">
             <div class="logo"><span><?php echo e($general_setting->site_title); ?></span></div>
-            <?php if(session()->has('delete_message')): ?>
-            <div class="alert alert-danger alert-dismissible text-center"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><?php echo e(session()->get('delete_message')); ?></div> 
-            <?php endif; ?>
-            <form method="POST" action="<?php echo e(route('login')); ?>" id="login-form">
-              <?php echo csrf_field(); ?>
+            <form method="POST" action="<?php echo e(route('register')); ?>">
+                <?php echo csrf_field(); ?>
               <div class="form-group-material">
-                <input id="login-username" type="text" name="name" required class="input-material" value="">
-                <label for="login-username" class="label-material"><?php echo e(trans('file.UserName')); ?></label>
+                <input id="register-username" type="text" name="name" required class="input-material">
+                <label for="register-username" class="label-material"><?php echo e(trans('file.UserName')); ?> *</label>
                 <?php if($errors->has('name')): ?>
                     <p>
                         <strong><?php echo e($errors->first('name')); ?></strong>
                     </p>
                 <?php endif; ?>
               </div>
-              
               <div class="form-group-material">
-                <input id="login-password" type="password" name="password" required class="input-material" value="">
-                <label for="login-password" class="label-material"><?php echo e(trans('file.Password')); ?></label>
-                <?php if($errors->has('name')): ?>
+                <input id="register-email" type="email" name="email" required class="input-material">
+                <label for="register-email" class="label-material"><?php echo e(trans('file.Email')); ?> *</label>
+                <?php if($errors->has('email')): ?>
                     <p>
-                        <strong><?php echo e($errors->first('name')); ?></strong>
+                        <strong><?php echo e($errors->first('email')); ?></strong>
                     </p>
                 <?php endif; ?>
               </div>
-              <button type="submit" class="btn btn-primary btn-block"><?php echo e(trans('file.LogIn')); ?></button>
-            </form>
-            <!-- This two button for demo only-->
-            <button type="submit" class="btn btn-success admin-btn">LogIn as Admin</button>
-            <button type="submit" class="btn btn-info staff-btn">LogIn as Staff</button>
-            <br><br>
-            <a href="<?php echo e(route('password.request')); ?>" class="forgot-pass"><?php echo e(trans('file.Forgot Password?')); ?></a>
-            <p><?php echo e(trans('file.Do not have an account?')); ?></p><a href="<?php echo e(url('register')); ?>" class="signup"><?php echo e(trans('file.Register')); ?></a>
-          </div>
-          <div class="copyrights text-center">
-            <p><?php echo e(trans('file.Developed By')); ?> <a href="http://gessys.com.br" class="external">Gessys Tecnologia</a></p>
+              <div class="form-group-material">
+                <input id="register-phone" type="text" name="phone" required class="input-material">
+                <label for="register-phone" class="label-material"><?php echo e(trans('file.Phone Number')); ?> *</label>
+              </div>
+              <div class="form-group-material">
+                <input id="register-company" type="text" name="company_name" class="input-material">
+                <label for="register-company" class="label-material"><?php echo e(trans('file.Company Name')); ?></label>
+              </div>
+              <div class="form-group-material">
+                <select name="role_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Role...">
+                  <?php $__currentLoopData = $lims_role_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <option value="<?php echo e($role->id); ?>"><?php echo e($role->name); ?></option>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+              </div>
+              <div class="form-group-material" id="biller-id">
+                <select name="biller_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Biller*...">
+                  <?php $__currentLoopData = $lims_biller_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $biller): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <option value="<?php echo e($biller->id); ?>"><?php echo e($biller->name); ?> (<?php echo e($biller->phone_number); ?>)</option>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+              </div>
+              <div class="form-group-material" id="warehouse-id">
+                <select name="warehouse_id" required class="selectpicker form-control" data-live-search="true" data-live-search-style="begins" title="Select Warehouse*...">
+                  <?php $__currentLoopData = $lims_warehouse_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $warehouse): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <option value="<?php echo e($warehouse->id); ?>"><?php echo e($warehouse->name); ?></option>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+              </div>
+              <div class="form-group-material">
+                <input id="password" type="password" class="input-material" name="password" required>
+                <label for="passowrd" class="label-material"><?php echo e(trans('file.Password')); ?> *</label>
+                <?php if($errors->has('password')): ?>
+                    <p>
+                        <strong><?php echo e($errors->first('password')); ?></strong>
+                    </p>
+                <?php endif; ?>
+              </div>
+              <div class="form-group-material">
+                <input id="password-confirm" type="password" name="password_confirmation" required class="input-material">
+                <label for="password-confirm" class="label-material"><?php echo e(trans('file.Confirm Password')); ?> *</label>
+              </div>
+              <input id="register" type="submit" value="Register" class="btn btn-primary">
+            </form><p><?php echo e(trans('file.Already have an account')); ?>? </p><a href="<?php echo e(url('login')); ?>" class="signup"><?php echo e(trans('file.LogIn')); ?></a>
           </div>
         </div>
       </div>
     </div>
-  </body>
-</html>
-
-<script type="text/javascript">
-    $('.admin-btn').on('click', function(){
-        $("input[name='name']").focus().val('admin');
-        $("input[name='password']").focus().val('admin');
-    });
-
-  $('.staff-btn').on('click', function(){
-      $("input[name='name']").focus().val('staff');
-      $("input[name='password']").focus().val('staff');
-  });
-  // ------------------------------------------------------- //
+    <script type="text/javascript">
+      // ------------------------------------------------------- //
     // Material Inputs
     // ------------------------------------------------------ //
 
@@ -130,4 +147,6 @@
             $(this).siblings('.label-material').removeClass('active');
         }
     });
-</script>
+    </script>
+  </body>
+</html>
