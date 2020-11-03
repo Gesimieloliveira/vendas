@@ -385,10 +385,10 @@ class SaleController extends Controller
                         $quantity = $qty[$i] * $lims_sale_unit_data->operation_value;
                     elseif($lims_sale_unit_data->operator == '/')
                         $quantity = $qty[$i] / $lims_sale_unit_data->operation_value;
-                    //deduzir quantidade
+                    //deduct quantity
                     $lims_product_data->qty = $lims_product_data->qty - $quantity;
                     $lims_product_data->save();
-                    //deduzir a quantidade da variante do produto, se houver
+                    //deduct product variant quantity if exist
                     if($lims_product_data->is_variant) {
                         $lims_product_variant_data->qty -= $quantity;
                         $lims_product_variant_data->save();
@@ -397,7 +397,7 @@ class SaleController extends Controller
                     else {
                         $lims_product_warehouse_data = Product_Warehouse::FindProductWithoutVariant($id, $data['warehouse_id'])->first();
                     }
-                    // deduz a quantidade do armazém
+                    //deduct quantity from warehouse
                     $lims_product_warehouse_data->qty -= $quantity;
                     $lims_product_warehouse_data->save();
                 }
